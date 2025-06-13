@@ -1,28 +1,54 @@
-import { useEffect, useState } from "react";
-import axios from "axios";
-
-export const EmployeeList = () => {
-  const [employees, setEmployees] = useState([]);
-
-  useEffect(() => {
-    axios.get(`${import.meta.env.VITE_BACK_URL}/workers`).then((res) => {
-      setEmployees(res.data.workers);
-    });
-  }, []);
+export const EmployeeList = ({ employees, onEdit }) => {
 
   return (
-    <div className="p-4 max-w-4xl mx-auto">
-      <h2 className="text-xl font-bold mb-4">Lista de empleados</h2>
-      <ul className="space-y-2">
-        {employees.map((emp) => (
-          <li key={emp.id} className="border p-3 rounded shadow-sm">
-            <p><strong>{emp.name} {emp.last_name}</strong></p>
-            <p>DNI: {emp.dni}</p>
-            <p>Área: {emp.area.name}</p>
-            <p>{emp.is_developer ? "💻 Desarrollador" : "👷‍♂️ No desarrollador"}</p>
-          </li>
-        ))}
-      </ul>
+    <div className="p-4 max-w-6xl mx-auto">
+      {/* Header */}
+      <div className="grid grid-cols-8 gap-4 bg-gray-800 text-white font-semibold p-3 rounded-t">
+        <div>Nombre</div>
+        <div>Apellido</div>
+        <div>DNI</div>
+        <div>Fecha de nacimiento</div>
+        <div>Área</div>
+        <div>Desarrollador</div>
+        <div>Estado</div>
+        <div>Acciones</div>
+      </div>
+
+      {/* Data Rows */}
+      {employees.map((emp) => {
+        const date = new Date(emp.birthdate);
+
+        return (
+          <div
+            key={emp.id}
+            className="capitalize font-medium grid grid-cols-8 gap-4 items-center bg-white text-black p-4 border-b hover:bg-gray-100 transition"
+          >
+            <div>{emp.name}</div>
+            <div>{emp.last_name}</div>
+            <div>{emp.dni}</div>
+            <div>{date.toLocaleDateString("es-AR")
+            }</div>
+            <div>{emp.area?.name}</div>
+            <div className="pl-6">{emp.is_developer ? "✅" : "❌"}</div>
+            <div className={`font-bold ${emp.status ? "text-green-700" : "text-red-600"}`}>{emp.status ? "Activo" : "Inactivo"}</div>
+            <div className="flex gap-2">
+              {
+                (
+
+                  <button
+                    className="bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700 transition text-sm"
+                    onClick={() => onEdit(emp)}
+                  >
+                    Ver más
+                  </button>
+                )
+              }
+            </div>
+          </div>
+        )
+      }
+      )}
+
     </div>
   );
 };

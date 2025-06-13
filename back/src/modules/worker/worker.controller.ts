@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Patch, Post, Put } from "@nestjs/common";
+import { Body, Controller, Delete, Get, HttpCode, Param, Patch, Post, Put } from "@nestjs/common";
 import { WorkerService } from "./worker.service";
 import { WorkerDto } from "src/dtos/worker.dto";
 import { ApiTags } from "@nestjs/swagger";
@@ -15,12 +15,13 @@ export class WorkerController {
 
     @Get(":id")
     getWorkerByIdController(
-        @Param() id: string
+        @Param("id") id: string
     ) {
         return this.workerService.getWorkerByIdService(id)
     }
 
     @Post()
+    @HttpCode(201)
     createNewWorkerController(
         @Body() newWorker: WorkerDto
     ) {
@@ -29,16 +30,23 @@ export class WorkerController {
 
     @Put(":id")
     modifyWorkerController(
-        @Param() id: string,
+        @Param("id") id: string,
         @Body() newWorker: WorkerDto
     ) {
         return this.workerService.modifyWorkerService(id, newWorker)
     }
 
-    @Patch(":id")
-    disableWorkerController(
-        @Param() id: string
+    @Patch("status/:id")
+    disableOrEnableWorkerController(
+        @Param("id") id: string
     ) {
-        return this.workerService.disableWorkerService(id)
+        return this.workerService.disableOrEnableWorkerService(id)
+    }
+
+    @Delete(":id")
+    deleteWorkerController(
+        @Param("id") id: string
+    ) {
+        return this.workerService.deleteWorkerService(id)
     }
 }

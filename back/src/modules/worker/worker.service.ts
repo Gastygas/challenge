@@ -8,46 +8,26 @@ export class WorkerService {
     constructor(private readonly workersRepository: WorkerRepository) { }
 
     async getAllWorkersService() {
-        try {
-            return await this.workersRepository.getAllWorkersRepository()
-        } catch (error) {
-            console.log(error);
-            return error
-        }
+        return await this.workersRepository.getAllWorkersRepository()
     }
     async getWorkerByIdService(id: string) {
-        try {
-            return await this.workersRepository.getWorkerByIdRepository(id)
-        } catch (error) {
-            console.log(error);
-            return error
-        }
+        return await this.workersRepository.getWorkerByIdRepository(id)
     }
 
     async createNewWorkerService(newWorker: WorkerDto) {
-        try {
-            return await this.workersRepository.createNewWorkerRepository(newWorker)
-        } catch (error) {
-            console.log(error);
-            return error
-        };
+        return await this.workersRepository.createNewWorkerRepository(newWorker)
     }
 
     async modifyWorkerService(id: string, newWorker: WorkerDto) {
-        try {
-            return await this.workersRepository.modifyWorkerRepository(id, newWorker)
-        } catch (error) {
-            console.log(error);
-            return error
-        };
+        return await this.workersRepository.modifyWorkerRepository(id, newWorker)
+
     }
 
-    async disableWorkerService(id: string) {
-        try {
-            return await this.workersRepository.disableWorkerRepository(id)
-        } catch (error) {
-            console.log(error);
-            return error
-        };
+    async disableOrEnableWorkerService(id: string) {
+        return await this.workersRepository.disableOrEnableWorkerRepository(id)
+    }
+
+    async deleteWorkerService(id: string) {
+        return await this.workersRepository.deleteWorkerRepository(id)
     }
 }

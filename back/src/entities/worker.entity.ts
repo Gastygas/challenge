@@ -14,11 +14,11 @@ export class Worker {
     @Column({ type: "text", nullable: false })
     last_name: string;
 
-    @Column({ type: "text", nullable: false })
+    @Column({ type: "text", nullable: false, unique:true })
     dni: string
 
-    @Column({ type: "text", nullable: false })
-    birthdate: string
+    @Column({ type: "date", nullable: false })
+    birthdate: Date
 
     @Column({ type: "boolean", default: false })
     is_developer: boolean

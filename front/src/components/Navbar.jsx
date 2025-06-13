@@ -2,7 +2,7 @@ const Navbar = () => {
     return (
         <div className=" sticky top-0 z-20 bg-white w-full h-[70px] flex justify-between  items-center ">
             <div className="flex items-center">
-                <img src="./logo.png" alt="logo" className="w-[100px] h-[70px] mr-10" />
+                <a href="/"><img src="./logo.png" alt="logo" className="w-[100px] h-[70px] mr-10" /></a>
                 <p className="font-medium text-xl">Challenge Ingreso SOTAMIT</p>
             </div>
             <div className="w-1/2">
