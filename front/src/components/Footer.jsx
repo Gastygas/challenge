@@ -14,7 +14,7 @@ const Footer = () => {
             </a>
 
             <p className="text-sm text-gray-400 max-w-md">
-                ⚠️ Este sitio es de uso libre, sin copyright. Usalo, compartilo o mejoralo libremente.
+                ⚠️ Sitio creado por Gaston Gonzalez 2025.
             </p>
         </footer>
     );

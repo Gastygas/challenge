@@ -2,7 +2,7 @@ const SeeMore = ({ editMode, formData, handleChange, selectedWorker, setIsOpenEd
     return (
 
         <div className="fixed inset-0 bg-[#21202079] flex justify-center items-center z-50">
-            <div className="bg-white rounded-xl p-8 w-[500px] shadow-xl text-black">
+            <div className="bg-white rounded-xl p-8 w-[500px] shadow-xl text-black overflow-y-scroll max-h-[90vh]">
                 <h3 className="text-xl font-bold mb-4">Detalles del empleado</h3>
 
                 <div className="space-y-2">
