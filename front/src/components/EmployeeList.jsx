@@ -23,7 +23,7 @@ export const EmployeeList = ({ employees, onEdit }) => {
             key={emp.id}
             className="capitalize font-medium grid grid-cols-8 gap-4 items-center bg-white text-black p-4 border-b hover:bg-gray-100 transition"
           >
-            <div>{emp.name}</div>
+            <div data-testid="employee-name">{emp.name}</div>
             <div>{emp.last_name}</div>
             <div>{emp.dni}</div>
             <div>{date.toLocaleDateString("es-AR")
